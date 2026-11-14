@@ -1,0 +1,79 @@
+# RSS endpoints are starting candidates. Validate availability and regional relevance regularly.
+# The collector records source metadata; it does not infer editorial stance from country.
+regions:
+  north_america:
+    - name: Reuters World
+      country: International
+      url: https://feeds.reuters.com/reuters/worldNews
+    - name: AP Top News
+      country: United States
+      url: https://rsshub.app/apnews/topics/apf-topnews
+    - name: NPR World
+      country: United States
+      url: https://feeds.npr.org/1004/rss.xml
+    - name: CBC World
+      country: Canada
+      url: https://www.cbc.ca/cmlink/rss-world
+
+  china:
+    - name: Xinhua
+      country: China
+      url: https://english.news.cn/rss/worldrss.xml
+    - name: China Daily
+      country: China
+      url: https://www.chinadaily.com.cn/rss/world_rss.xml
+
+  europe:
+    - name: BBC World
+      country: United Kingdom
+      url: https://feeds.bbci.co.uk/news/world/rss.xml
+    - name: The Guardian World
+      country: United Kingdom
+      url: https://www.theguardian.com/world/rss
+    - name: France 24
+      country: France
+      url: https://www.france24.com/en/rss
+    - name: Deutsche Welle
+      country: Germany
+      url: https://rss.dw.com/rdf/rss-en-all
+
+  russia_eurasia:
+    - name: TASS
+      country: Russia
+      url: https://tass.com/rss/v2.xml
+    - name: Ukrainska Pravda
+      country: Ukraine
+      url: https://www.pravda.com.ua/eng/rss/
+
+  middle_east:
+    - name: Al Jazeera
+      country: Qatar
+      url: https://www.aljazeera.com/xml/rss/all.xml
+    - name: Times of Israel
+      country: Israel
+      url: https://www.timesofisrael.com/feed/
+    - name: Iran International
+      country: Iran
+      url: https://www.iranintl.com/en/feed
+    - name: Arab News
+      country: Saudi Arabia
+      url: https://www.arabnews.com/rss.xml
+
+  asia_pacific:
+    - name: NHK World
+      country: Japan
+      url: https://www3.nhk.or.jp/rss/news/cat0.xml
+    - name: The Hindu
+      country: India
+      url: https://www.thehindu.com/news/international/feeder/default.rss
+    - name: The Straits Times
+      country: Singapore
+      url: https://www.straitstimes.com/news/world/rss.xml
+
+  global_south:
+    - name: Africanews
+      country: Africa
+      url: https://www.africanews.com/feed/rss
+    - name: Buenos Aires Times
+      country: Argentina
+      url: https://www.batimes.com.ar/feed
