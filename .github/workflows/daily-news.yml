@@ -1,0 +1,71 @@
+name: Global News Daily
+
+on:
+  schedule:
+    # 07:00 Beijing = 23:00 UTC on the previous day
+    - cron: "0 23 * * *"
+    # 21:00 Beijing = 13:00 UTC
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+    inputs:
+      edition:
+        description: "Report edition"
+        required: true
+        type: choice
+        options:
+          - morning
+          - evening
+
+permissions:
+  contents: write
+
+concurrency:
+  group: global-news-daily
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Determine edition
+        id: edition
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "value=${{ inputs.edition }}" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ github.event.schedule }}" == "0 23 * * *" ]]; then
+            echo "value=morning" >> "$GITHUB_OUTPUT"
+          else
+            echo "value=evening" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Collect and generate report
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        run: python scripts/collect_news.py --edition "${{ steps.edition.outputs.value }}"
+
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/
+          if git diff --cached --quiet; then
+            echo "No report changes to commit."
+          else
+            git commit -m "news: ${{ steps.edition.outputs.value }} report $(date -u +%F)"
+            git push
+          fi
