@@ -4,8 +4,8 @@ on:
   schedule:
     # 07:00 Beijing = 23:00 UTC on the previous day
     - cron: "0 23 * * *"
-    # 21:00 Beijing = 13:00 UTC
-    - cron: "0 13 * * *"
+    # 20:00 Beijing = 12:00 UTC
+    - cron: "0 12 * * *"
   workflow_dispatch:
     inputs:
       edition:

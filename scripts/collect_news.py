@@ -186,7 +186,7 @@ def main():
     args = parser.parse_args()
 
     now = datetime.now(TZ)
-    hours = 12 if args.edition == "morning" else 14
+    hours = 12 if args.edition == "morning" else 13
     end = now.astimezone(UTC)
     start = end - timedelta(hours=hours)
 

@@ -8,7 +8,7 @@
 - GDELT 全球新闻检索补充事件发现。
 - 按事件去重，保留来源标题、发布时间和原文链接。
 - 可选调用 OpenAI API 生成中文摘要、跨媒体比较和分析。
-- GitHub Actions 每天北京时间 07:00、21:00 运行。
+- GitHub Actions 每天北京时间 07:00、20:00 运行。
 - 报告按 `reports/YYYY/MM/YYYY-MM-DD-{morning|evening}.md` 归档。
 
 ## 安装 / 本地运行
@@ -40,9 +40,9 @@ python scripts/collect_news.py --edition evening
 ## 时间窗口
 
 - 早间版：北京时间前一日 19:00 至当日 07:00。
-- 晚间版：北京时间当日 07:00 至 21:00。
+- 晚间版：北京时间当日 07:00 至 20:00。
 
-GitHub Actions 使用 UTC cron：23:00 UTC（次日北京时间 07:00）和 13:00 UTC（北京时间 21:00）。GitHub 定时任务可能延迟数分钟，且默认分支必须包含工作流文件。
+GitHub Actions 使用 UTC cron：23:00 UTC（次日北京时间 07:00）和 12:00 UTC（北京时间 20:00）。GitHub 定时任务可能延迟数分钟，且默认分支必须包含工作流文件。
 
 ## 质量原则
 
