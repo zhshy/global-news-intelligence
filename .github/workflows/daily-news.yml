@@ -1,11 +1,13 @@
 name: Global News Daily
 
 on:
-  schedule:
-    # 07:00 Beijing = 23:00 UTC on the previous day
-    - cron: "0 23 * * *"
-    # 20:00 Beijing = 12:00 UTC
-    - cron: "0 12 * * *"
+  # 定时生成已改为 Trae 本地计划任务（07:00 / 20:00 北京时间，由 Trae 撰写分析），
+  # 这里只保留手动触发。若恢复 Actions 自动跑，请取消下面 schedule 注释。
+  # schedule:
+  #   # 07:00 Beijing = 23:00 UTC on the previous day
+  #   - cron: "0 23 * * *"
+  #   # 20:00 Beijing = 12:00 UTC
+  #   - cron: "0 12 * * *"
   workflow_dispatch:
     inputs:
       edition:
